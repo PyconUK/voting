@@ -1,0 +1,75 @@
+import os
+
+import dj_database_url
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+DEBUG = bool(os.environ.get('DEBUG', False))
+
+SECRET_KEY = '622+nt!d7a7&a)v5k4=f-%qks8*#jni+6ezo77lp^io^efjl!#'
+
+ALLOWED_HOSTS = ['pyconuk_voting.herokuapp.com', 'voting.pyconuk.org']
+
+
+INSTALLED_APPS = (
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    'django_extensions',
+
+    'voting',
+)
+
+MIDDLEWARE_CLASSES = (
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+)
+
+ROOT_URLCONF = 'voting.urls'
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+WSGI_APPLICATION = 'voting.wsgi.application'
+
+
+# Database
+# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
+DATABASES = {'default': dj_database_url.config(default='postgres://localhost/voting')}
+
+
+# Internationalization
+# https://docs.djangoproject.com/en/1.8/topics/i18n/
+LANGUAGE_CODE = 'en-gb'
+TIME_ZONE = 'UTC'
+USE_I18N = False
+USE_L10N = False
+USE_TZ = False
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.8/howto/static-files/
+STATIC_URL = '/static/'
