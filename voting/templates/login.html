@@ -4,7 +4,13 @@
 {% block content %}
 <form method="POST" class="form-signin">
   {% csrf_token %}
-  {{ form }}
-  <input type="submit" value="Login" />
+
+  <label for="id_username" class="sr-only">Email address</label>
+  <input name="username" type="text" id="id_username" class="form-control" placeholder="Email address" required autofocus />
+
+  <label for="id_password" class="sr-only">Password</label>
+  <input name="password" type="password" id="id_password" class="form-control" placeholder="Password" required />
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
 </form>
 {% endblock %}
