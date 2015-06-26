@@ -20,7 +20,7 @@ class ListRandomProposal(LoginRequiredMixin, DetailView):
     model = Proposal
 
 
-class Register(LoginRequiredMixin, CreateView):
+class Register(CreateView):
     form_class = RegisterForm
     success_url = '/'
     template_name = 'register.html'
