@@ -84,3 +84,6 @@ STATIC_URL = '/static/'
 LOGIN_URL = reverse_lazy('login')
 LOGOUT_URL = reverse_lazy('logout')
 LOGIN_REDIRECT_URL = '/'
+
+
+AUTH_USER_MODEL = 'voting.User'
