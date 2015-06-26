@@ -12,6 +12,10 @@ class Proposal(models.Model):
     def __str__(self):
         return self.title
 
+    @property
+    def score(self):
+        return self.vote_set.filter(is_interested=True).count()
+
 
 class Vote(models.Model):
     proposal = models.ForeignKey('Proposal')
