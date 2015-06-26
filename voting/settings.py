@@ -9,7 +9,7 @@ DEBUG = bool(os.environ.get('DEBUG', False))
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'development_only_key')
 
-ALLOWED_HOSTS = ['pyconuk_voting.herokuapp.com', 'voting.pyconuk.org']
+ALLOWED_HOSTS = ['pyconuk-voting.herokuapp.com', 'voting.pyconuk.org']
 
 
 INSTALLED_APPS = (
