@@ -7,7 +7,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DEBUG = bool(os.environ.get('DEBUG', False))
 
-SECRET_KEY = '622+nt!d7a7&a)v5k4=f-%qks8*#jni+6ezo77lp^io^efjl!#'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'development_only_key')
 
 ALLOWED_HOSTS = ['pyconuk_voting.herokuapp.com', 'voting.pyconuk.org']
 
