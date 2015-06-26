@@ -1,6 +1,6 @@
 from django.conf.urls import include, url
 from django.contrib import admin
-from django.contrib.auth.views import login
+from django.contrib.auth.views import login, logout
 
 from .views import Home, Register, VoteForProposal
 
@@ -12,6 +12,7 @@ urlpatterns = [
 
     url(r'^proposal/(?P<pk>\w+)/vote/$', VoteForProposal.as_view(), name='vote'),
 
+    url(r'^login/$', login, {'template_name': 'login.html'}, name='login'),
+    url(r'^logout/$', logout, {'next_page': '/'}, name='logout'),
     url(r'^register/$', Register.as_view(), name='register'),
-    # url(r'^login/$', login(), name='login'),
 ]
