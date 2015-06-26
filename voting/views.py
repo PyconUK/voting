@@ -32,10 +32,12 @@ class ProposalVote(LoginRequiredMixin, View):
         if not choice:
             return redirect('/')  # FIXME: What should we do here?
 
-        Vote.objects.create(
+        Vote.objects.update_or_create(
             proposal=proposal,
             user=self.request.user,
-            is_interested=bool(int(choice)),
+            defaults={
+                'is_interested': bool(int(choice)),
+            },
         )
 
         return redirect('/')
