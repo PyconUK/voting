@@ -60,7 +60,7 @@ class VoteForProposal(LoginRequiredMixin, View):
         Vote.objects.create(
             proposal=proposal,
             user=self.request.user,
-            is_interested=choice,
+            is_interested=bool(int(choice)),
         )
 
         return redirect('/')
