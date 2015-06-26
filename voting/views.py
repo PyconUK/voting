@@ -25,6 +25,11 @@ class Register(CreateView):
     success_url = '/'
     template_name = 'register.html'
 
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated():
+            return redirect('/')
+        return super().dispatch(request, *args, **kwargs)
+
     def form_valid(self, form):
         """
         If the form is valid, save the associated model and authenticate user.
