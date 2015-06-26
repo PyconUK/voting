@@ -1,7 +1,6 @@
 dj-database-url==0.3.0
 Django==1.8.2
 django-braces==1.8.0
-django-cache-url==0.8.0
 django-extensions==1.5.5
 gunicorn==19.3.0
 opbeat==2.1.1

@@ -1,7 +1,6 @@
 import os
 
 import dj_database_url
-import django_cache_url
 from django.core.urlresolvers import reverse_lazy
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -63,8 +62,6 @@ WSGI_APPLICATION = 'voting.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 DATABASES = {'default': dj_database_url.config(default='postgres://localhost/voting')}
-
-CACHES = {'default': django_cache_url.config(env='REDISTOGO_URL', default='locmem://')}
 
 
 # Internationalization
