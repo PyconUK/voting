@@ -1,3 +1,4 @@
+from braces.views import LoginRequiredMixin
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect
 from django.views.generic import CreateView, DetailView, ListView, View
@@ -6,7 +7,7 @@ from .forms import RegisterForm
 from .models import Proposal, Vote
 
 
-class Home(ListView):
+class Home(LoginRequiredMixin, ListView):
     model = Proposal
     ordering = '?'
     template_name = 'home.html'
@@ -15,11 +16,11 @@ class Home(ListView):
         return super().get_queryset().exclude(vote__user=self.request.user)
 
 
-class ListRandomProposal(DetailView):
+class ListRandomProposal(LoginRequiredMixin, DetailView):
     model = Proposal
 
 
-class Register(CreateView):
+class Register(LoginRequiredMixin, CreateView):
     form_class = RegisterForm
     success_url = '/'
     template_name = 'register.html'
@@ -43,7 +44,7 @@ class Register(CreateView):
         return redirect(self.get_success_url())
 
 
-class VoteForProposal(View):
+class VoteForProposal(LoginRequiredMixin, View):
     http_method_names = ['post']
 
     def post(self, request, *args, **kwargs):
