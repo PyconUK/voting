@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.models import Group
 
 from .models import Proposal, User, Vote
 
@@ -11,3 +12,5 @@ class ProposalAdmin(admin.ModelAdmin):
 
 admin.site.register(User)
 admin.site.register(Vote)
+
+admin.site.unregister(Group)
