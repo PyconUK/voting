@@ -23,4 +23,6 @@ urlpatterns = [
     url(r'^login/$', login, {'template_name': 'login.html'}, name='login'),
     url(r'^logout/$', logout, {'next_page': '/'}, name='logout'),
     url(r'^register/$', Register.as_view(), name='register'),
+
+    url('', include('social.apps.django_app.urls', namespace='social')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

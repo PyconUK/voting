@@ -22,6 +22,7 @@ INSTALLED_APPS = (
 
     'django_extensions',
     'opbeat.contrib.django',
+    'social.apps.django_app.default',
 
     'voting',
 )
@@ -87,7 +88,15 @@ LOGOUT_URL = reverse_lazy('logout')
 LOGIN_REDIRECT_URL = '/'
 
 
-AUTH_USER_MODEL = 'voting.User'
+# Auth
+AUTHENTICATION_BACKENDS = (
+    'social.backends.twitter.TwitterOAuth',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+SOCIAL_AUTH_USER_MODEL = 'auth.User'
+SOCIAL_AUTH_TWITTER_KEY = os.environ.get('SOCIAL_AUTH_TWITTER_KEY', '')
+SOCIAL_AUTH_TWITTER_SECRET = os.environ.get('SOCIAL_AUTH_TWITTER_SECRET', '')
 
 
 # OpBeat
