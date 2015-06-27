@@ -12,7 +12,6 @@ urlpatterns = [
 
     url(r'^favicon.ico$', RedirectView.as_view(url=settings.STATIC_URL + 'favicon.ico')),
 
-    # url(r'^$', RandomisedProposalList.as_view(), name='home'),
     url(r'^$', Home.as_view(), name='home'),
     # url(r'^reviewed/$', ReviewedProposals.as_view(), name='reviewed-proposals'),
 

@@ -1,16 +1,21 @@
 from braces.views import LoginRequiredMixin
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect
-from django.views.generic import CreateView, DetailView, ListView, View
+from django.views.generic import (CreateView, DetailView, ListView,
+                                  TemplateView, View)
 
 from .forms import RegisterForm
 from .models import Proposal, Vote
 
 
-class Home(LoginRequiredMixin, View):
-    def dispatch(self, request, *args, **kwargs):
-        return RandomisedProposalDetail.as_view()(request)
-        # return RandomisedProposalList.as_view()(request)
+class Home(LoginRequiredMixin, TemplateView):
+    template_name = 'home.html'
+
+    def get(self, request, *args, **kwargs):
+        proposals = Proposal.objects.exclude(vote__user=self.request.user)
+        if not proposals:
+            return super().get(request, *args, **kwargs)
+        return redirect('proposal-detail', pk=proposals.order_by('?').first().pk)
 
 
 class ProposalDetail(LoginRequiredMixin, DetailView):
@@ -38,12 +43,6 @@ class ProposalVote(LoginRequiredMixin, View):
         )
 
         return redirect('/')
-
-
-class RandomisedProposalDetail(LoginRequiredMixin, View):
-    def get(self, request, *args, **kwargs):
-        proposals = Proposal.objects.exclude(vote__user=self.request.user)
-        return redirect('proposal-detail', pk=proposals.order_by('?').first().pk)
 
 
 class RandomisedProposalList(LoginRequiredMixin, ListView):
