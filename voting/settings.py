@@ -90,11 +90,14 @@ LOGIN_REDIRECT_URL = '/'
 
 # Auth
 AUTHENTICATION_BACKENDS = (
+    'social.backends.github.GithubOAuth2',
     'social.backends.twitter.TwitterOAuth',
 
     'django.contrib.auth.backends.ModelBackend',
 )
 SOCIAL_AUTH_USER_MODEL = 'auth.User'
+SOCIAL_AUTH_GITHUB_KEY = os.environ.get('SOCIAL_AUTH_GITHUB_KEY', '')
+SOCIAL_AUTH_GITHUB_SECRET = os.environ.get('SOCIAL_AUTH_GITHUB_SECRET', '')
 SOCIAL_AUTH_TWITTER_KEY = os.environ.get('SOCIAL_AUTH_TWITTER_KEY', '')
 SOCIAL_AUTH_TWITTER_SECRET = os.environ.get('SOCIAL_AUTH_TWITTER_SECRET', '')
 
