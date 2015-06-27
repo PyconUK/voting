@@ -90,6 +90,7 @@ LOGIN_REDIRECT_URL = '/'
 
 # Auth
 AUTHENTICATION_BACKENDS = (
+    'social.backends.email.EmailAuth',
     'social.backends.facebook.FacebookOAuth2',
     'social.backends.github.GithubOAuth2',
     'social.backends.twitter.TwitterOAuth',
@@ -97,6 +98,8 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 SOCIAL_AUTH_USER_MODEL = 'auth.User'
+SOCIAL_AUTH_EMAIL_FORM_URL = '/login/'
+SOCIAL_AUTH_EMAIL_FORM_HTML = 'login.html'
 SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get('SOCIAL_AUTH_FACEBOOK_KEY', '')
 SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get('SOCIAL_AUTH_FACEBOOK_SECRET', '')
 SOCIAL_AUTH_GITHUB_KEY = os.environ.get('SOCIAL_AUTH_GITHUB_KEY', '')
