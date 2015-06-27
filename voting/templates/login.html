@@ -2,17 +2,37 @@
 
 
 {% block content %}
-<form method="POST" class="form-signin">
-  {% csrf_token %}
+<div class="col-sm-6 login">
+  <h2>Login</h2>
+  <form method="POST" action="{% url 'login' %}" class="form-signin">
+    {% csrf_token %}
 
-  <label for="id_username" class="sr-only">Email address</label>
-  <input name="username" type="text" id="id_username" class="form-control" placeholder="Email address" required autofocus />
+    <label for="id_username" class="sr-only">Email address</label>
+    <input name="username" type="text" id="id_username" class="form-control" placeholder="Email address" required autofocus />
 
-  <label for="id_password" class="sr-only">Password</label>
-  <input name="password" type="password" id="id_password" class="form-control" placeholder="Password" required />
+    <label for="id_password" class="sr-only">Password</label>
+    <input name="password" type="password" id="id_password" class="form-control" placeholder="Password" required />
 
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
-</form>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
+  </form>
+</div>
 
-<a href="{% url 'register' %}">Register</a>
+<div class="col-sm-6 register">
+  <h2>Register</h2>
+  <a class="btn btn-lg btn-primary btn-block" href="{% url 'social:begin' backend='facebook' %}">Facebook</a>
+  <a class="btn btn-lg btn-primary btn-block" href="{% url 'social:begin' backend='github' %}">GitHub</a>
+  {# <a class="btn btn-lg btn-primary btn-block" href="{% url 'social:begin' 'google' %}">Google</a> #}
+  <a class="btn btn-lg btn-primary btn-block" href="{% url 'social:begin' backend='twitter' %}">Twitter</a>
+  <form method="POST" action="{% url 'social:complete' backend='email' %}" class="form-signin">
+    {% csrf_token %}
+
+    <label for="id_username" class="sr-only">Email address</label>
+    <input name="username" type="text" id="id_username" class="form-control" placeholder="Email address" required />
+
+    <label for="id_password" class="sr-only">Password</label>
+    <input name="password" type="password" id="id_password" class="form-control" placeholder="Password" required />
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+  </form>
+</div>
 {% endblock %}

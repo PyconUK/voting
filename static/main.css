@@ -20,3 +20,8 @@
 .vote-buttons form:first-child {
     margin-right: 20px;
 }
+
+.login h2,
+.register h2 {
+    text-align: center;
+}
