@@ -7,17 +7,52 @@ from .forms import RegisterForm
 from .models import Proposal, Vote
 
 
-class Home(LoginRequiredMixin, ListView):
+class Home(LoginRequiredMixin, View):
+    def dispatch(self, request, *args, **kwargs):
+        return RandomisedProposalDetail.as_view()(request)
+        # return RandomisedProposalList.as_view()(request)
+
+
+class ProposalDetail(LoginRequiredMixin, DetailView):
+    model = Proposal
+    template_name = 'proposal_detail.html'
+
+
+class ProposalVote(LoginRequiredMixin, View):
+    http_method_names = ['post']
+
+    def post(self, request, *args, **kwargs):
+        try:
+            proposal = Proposal.objects.get(pk=self.kwargs['pk'])
+        except Proposal.DoesNotExist:
+            return redirect('/')  # FIXME: What should we do here?
+
+        choice = self.request.POST.get('vote')
+        if not choice:
+            return redirect('/')  # FIXME: What should we do here?
+
+        Vote.objects.create(
+            proposal=proposal,
+            user=self.request.user,
+            is_interested=bool(int(choice)),
+        )
+
+        return redirect('/')
+
+
+class RandomisedProposalDetail(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        proposals = Proposal.objects.exclude(vote__user=self.request.user)
+        return redirect('proposal-detail', pk=proposals.order_by('?').first().pk)
+
+
+class RandomisedProposalList(LoginRequiredMixin, ListView):
     model = Proposal
     ordering = '?'
-    template_name = 'home.html'
+    template_name = 'proposal_list.html'
 
     def get_queryset(self):
         return super().get_queryset().exclude(vote__user=self.request.user)
-
-
-class ListRandomProposal(LoginRequiredMixin, DetailView):
-    model = Proposal
 
 
 class Register(CreateView):
@@ -47,25 +82,3 @@ class Register(CreateView):
             login(self.request, new_user)
 
         return redirect(self.get_success_url())
-
-
-class VoteForProposal(LoginRequiredMixin, View):
-    http_method_names = ['post']
-
-    def post(self, request, *args, **kwargs):
-        try:
-            proposal = Proposal.objects.get(pk=self.kwargs['pk'])
-        except Proposal.DoesNotExist:
-            return redirect('/')  # FIXME: What should we do here?
-
-        choice = self.request.POST.get('vote')
-        if not choice:
-            return redirect('/')  # FIXME: What should we do here?
-
-        Vote.objects.create(
-            proposal=proposal,
-            user=self.request.user,
-            is_interested=bool(int(choice)),
-        )
-
-        return redirect('/')

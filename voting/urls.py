@@ -5,17 +5,21 @@ from django.contrib import admin
 from django.contrib.auth.views import login, logout
 from django.views.generic import RedirectView
 
-from .views import Home, Register, VoteForProposal
+from .views import Home, ProposalDetail, Register, ProposalVote
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^favicon.ico$', RedirectView.as_view(url=settings.STATIC_URL + 'favicon.ico')),
 
+    # url(r'^$', RandomisedProposalList.as_view(), name='home'),
     url(r'^$', Home.as_view(), name='home'),
     # url(r'^reviewed/$', ReviewedProposals.as_view(), name='reviewed-proposals'),
 
-    url(r'^proposal/(?P<pk>\w+)/vote/$', VoteForProposal.as_view(), name='vote'),
+    url(r'^proposals/(?P<pk>\w+)/', include([
+        url(r'^$', ProposalDetail.as_view(), name='proposal-detail'),
+        url(r'^vote/$', ProposalVote.as_view(), name='vote'),
+    ])),
 
     url(r'^login/$', login, {'template_name': 'login.html'}, name='login'),
     url(r'^logout/$', logout, {'next_page': '/'}, name='logout'),

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h2>{{ proposal.title }}</h2>
+<p>{{ proposal.abstract }}</p>
+
+<div class="vote-buttons">
+  <form action="{% url 'vote' pk=proposal.pk %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="vote" value="1" />
+    <input type="submit" class="btn" value="Interested" />
+  </form>
+
+  <form action="{% url 'vote' pk=proposal.pk %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="vote" value="0" />
+    <input type="submit" class="btn" value="Not Interested" />
+  </form>
+</div>
+{% endblock %}
