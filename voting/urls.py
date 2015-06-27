@@ -3,11 +3,14 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.views import login, logout
+from django.views.generic import RedirectView
 
 from .views import Home, Register, VoteForProposal
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^favicon.ico$', RedirectView.as_view(url=settings.STATIC_URL + 'favicon.ico')),
 
     url(r'^$', Home.as_view(), name='home'),
     # url(r'^reviewed/$', ReviewedProposals.as_view(), name='reviewed-proposals'),
