@@ -8,7 +8,7 @@ import voting.utils
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('voting', '0001_initial'),
+        ('voting', '0002_add_vote_unique_constraints'),
     ]
 
     operations = [
