@@ -5,6 +5,8 @@ from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager,
                                         PermissionsMixin)
 from django.db import models
 
+from .utils import generate_user_token
+
 
 class Proposal(models.Model):
     abstract = models.TextField()
@@ -63,6 +65,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.TextField(db_index=True, unique=True)
+    token = models.TextField(db_index=True, unique=True, null=True, blank=True, default=generate_user_token)
     is_staff = models.BooleanField(default=False,
                                    help_text='Designates whether the user can log into this admin site.')
     is_active = models.BooleanField(default=True,
