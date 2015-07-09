@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import (CreateView, DetailView, ListView,
                                   TemplateView, View)
+
 from .forms import RegisterForm
 from .models import Proposal, Vote
 
