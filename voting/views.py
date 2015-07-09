@@ -1,6 +1,6 @@
 from braces.views import LoginRequiredMixin
 from django.contrib.auth import authenticate, login
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import (CreateView, DetailView, ListView,
                                   TemplateView, View)
 
@@ -27,19 +27,18 @@ class ProposalVote(LoginRequiredMixin, View):
     http_method_names = ['post']
 
     def post(self, request, *args, **kwargs):
-        try:
-            proposal = Proposal.objects.get(pk=self.kwargs['pk'])
-        except Proposal.DoesNotExist:
-            return redirect('/')  # FIXME: What should we do here?
+        proposal = get_object_or_404(Proposal, pk=self.kwargs['pk'])
 
         choice = self.request.POST.get('vote')
         if not choice:
             return redirect('/')  # FIXME: What should we do here?
 
-        Vote.objects.create(
+        Vote.objects.update_or_create(
             proposal=proposal,
             user=self.request.user,
-            is_interested=bool(int(choice)),
+            defaults={
+                'is_interested': bool(int(choice)),
+            },
         )
 
         return redirect('/')
