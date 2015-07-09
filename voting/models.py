@@ -26,6 +26,9 @@ class Vote(models.Model):
     created_at = models.DateTimeField(default=datetime.datetime.now)
     is_interested = models.BooleanField(default=True)
 
+    class Meta:
+        unique_together = ('proposal', 'user')
+
     def __str__(self):
         args = [
             self.user.email,
