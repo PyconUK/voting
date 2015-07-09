@@ -65,6 +65,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.TextField(db_index=True, unique=True)
+    name = models.TextField(null=True, blank=True)
     token = models.TextField(db_index=True, unique=True, null=True, blank=True, default=generate_user_token)
     is_staff = models.BooleanField(default=False,
                                    help_text='Designates whether the user can log into this admin site.')
