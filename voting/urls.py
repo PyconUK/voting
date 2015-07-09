@@ -2,10 +2,9 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.auth.views import login, logout
 from django.views.generic import RedirectView
 
-from .views import Home, ProposalDetail, Register, ProposalVote
+from .views import Home, Login, ProposalDetail, ProposalVote
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -20,7 +19,5 @@ urlpatterns = [
         url(r'^vote/$', ProposalVote.as_view(), name='vote'),
     ])),
 
-    url(r'^login/$', login, {'template_name': 'login.html'}, name='login'),
-    url(r'^logout/$', logout, {'next_page': '/'}, name='logout'),
-    url(r'^register/$', Register.as_view(), name='register'),
+    url(r'^login/(?P<token>[\w-]+)/$', Login.as_view(), name='login'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

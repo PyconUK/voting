@@ -1,10 +1,8 @@
 from braces.views import LoginRequiredMixin
 from django.contrib.auth import authenticate, login
 from django.shortcuts import get_object_or_404, redirect
-from django.views.generic import (CreateView, DetailView, ListView,
-                                  TemplateView, View)
+from django.views.generic import DetailView, ListView, TemplateView, View
 
-from .forms import RegisterForm
 from .models import Proposal, Vote
 
 
@@ -16,6 +14,21 @@ class Home(LoginRequiredMixin, TemplateView):
         if not proposals:
             return super().get(request, *args, **kwargs)
         return redirect('proposal-detail', pk=proposals.order_by('?').first().pk)
+
+
+class Login(TemplateView):
+    http_method_names = ['get']
+    template_name = 'unknown_user.html'
+
+    def get(self, request, *args, **kwargs):
+        """Log a user in using their token"""
+        new_user = authenticate(token=self.kwargs['token'])
+
+        if not new_user:
+            return super().get(request, *args, **kwargs)
+
+        login(self.request, new_user)
+        return redirect('home')
 
 
 class ProposalDetail(LoginRequiredMixin, DetailView):
@@ -51,32 +64,3 @@ class RandomisedProposalList(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return super().get_queryset().exclude(vote__user=self.request.user)
-
-
-class Register(CreateView):
-    form_class = RegisterForm
-    success_url = '/'
-    template_name = 'register.html'
-
-    def dispatch(self, request, *args, **kwargs):
-        if request.user.is_authenticated():
-            return redirect('/')
-        return super().dispatch(request, *args, **kwargs)
-
-    def form_valid(self, form):
-        """
-        If the form is valid, save the associated model and authenticate user.
-        """
-        self.object = form.save()
-
-        # authenticate and login the user
-        new_user = authenticate(
-            username=form.data['email'],
-            password=form.data['password1'],
-        )
-
-        if new_user:
-            # login the user to the session
-            login(self.request, new_user)
-
-        return redirect(self.get_success_url())
