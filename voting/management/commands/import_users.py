@@ -20,9 +20,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         with open(options['users_file'], 'r') as f:
-            for name, email, token in csv.reader(f):
+            for name, email, ticket_id in csv.reader(f):
                 if not (name or email):
-                    print('Missing: {}'.format(token))
+                    print('Missing: {}'.format(ticket_id))
                     continue
 
                 if User.objects.filter(email=email).exists():
@@ -32,6 +32,6 @@ class Command(BaseCommand):
                 User.objects.create(
                     name=name,
                     email=email,
-                    token=token,
+                    ticket_id=ticket_id,
                 )
                 print('User added: {}'.format(email))

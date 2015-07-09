@@ -3,11 +3,11 @@ from django.contrib.auth.backends import ModelBackend
 from .models import User
 
 
-class TokenAuthBackend(ModelBackend):
+class TicketAuthBackend(ModelBackend):
     """Log in to Django without providing a password."""
-    def authenticate(self, token=None):
+    def authenticate(self, ticket_id=None):
         try:
-            return User.objects.get(token=token)
+            return User.objects.get(ticket_id=ticket_id)
         except User.DoesNotExist:
             return None
 

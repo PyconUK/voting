@@ -21,8 +21,8 @@ class Login(TemplateView):
     template_name = 'unknown_user.html'
 
     def get(self, request, *args, **kwargs):
-        """Log a user in using their token"""
-        new_user = authenticate(token=self.kwargs['token'])
+        """Log a user in using their ticket_id"""
+        new_user = authenticate(ticket_id=self.kwargs['ticket_id'])
 
         if not new_user:
             return super().get(request, *args, **kwargs)
