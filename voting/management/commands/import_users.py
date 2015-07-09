@@ -25,7 +25,7 @@ class Command(BaseCommand):
                     print('Missing: {}'.format(ticket_id))
                     continue
 
-                if User.objects.filter(email=email).exists():
+                if User.objects.filter(ticket_id=ticket_id).exists():
                     print('User exists: {}'.format(email))
                     continue
 

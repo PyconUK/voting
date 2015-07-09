@@ -64,7 +64,7 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    email = models.TextField(db_index=True, unique=True)
+    email = models.TextField(null=False, blank=False)
     name = models.TextField(null=True, blank=True)
     ticket_id = models.TextField(db_index=True, unique=True, null=True, blank=True, default=generate_user_token)
     is_staff = models.BooleanField(default=False,
@@ -76,7 +76,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'ticket_id'
 
     def __str__(self):
         return self.email
