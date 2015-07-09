@@ -19,5 +19,6 @@ urlpatterns = [
         url(r'^vote/$', ProposalVote.as_view(), name='vote'),
     ])),
 
+    url(r'^login/$', Login.as_view(), name='login'),
     url(r'^login/(?P<ticket_id>[\w-]+)/$', Login.as_view(), name='login'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

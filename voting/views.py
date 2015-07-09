@@ -22,6 +22,9 @@ class Login(TemplateView):
 
     def get(self, request, *args, **kwargs):
         """Log a user in using their ticket_id"""
+        if not self.kwargs.get('ticket_id'):
+            return super().get(request, *args, **kwargs)
+
         new_user = authenticate(ticket_id=self.kwargs['ticket_id'])
 
         if not new_user:
