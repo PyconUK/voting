@@ -6,21 +6,27 @@ from ...models import User
 
 
 class Command(BaseCommand):
-    """
-    Generate a csv from the tito output csv using:
-
-    awk '{print $4 "," $7 "," $11}' FPAT="([^,]*)|(\"[^\"]+\")" input.csv | tail -n +2 > output.csv
-
-    Import to the voting app with this command.
-    """
     help = 'Import users from the specified csv'
 
     def add_arguments(self, parser):
         parser.add_argument('users_file')
 
     def handle(self, *args, **options):
+        ignore_list = (
+            'Conference Meal',
+            'Scientist',
+            'Teacher',
+            'Young Person',
+        )
         with open(options['users_file'], 'r') as f:
-            for name, email, ticket_id in csv.reader(f):
+            for line in csv.DictReader(f):
+                if line['Ticket'] in ignore_list:
+                    continue
+
+                name = line['Ticket Full Name']
+                email = line['Ticket Email']
+                ticket_id = line['Ticket Reference']
+
                 if not (name or email):
                     print('Missing: {}'.format(ticket_id))
                     continue
