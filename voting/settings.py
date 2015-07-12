@@ -88,6 +88,9 @@ LOGIN_REDIRECT_URL = '/'
 
 
 AUTH_USER_MODEL = 'voting.User'
+AUTHENTICATION_BACKENDS = (
+    'voting.auth.TicketAuthBackend',
+)
 
 
 # OpBeat
