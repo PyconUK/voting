@@ -25,7 +25,7 @@ class Login(TemplateView):
         if not self.kwargs.get('ticket_id'):
             return super().get(request, *args, **kwargs)
 
-        new_user = authenticate(ticket_id=self.kwargs['ticket_id'])
+        new_user = authenticate(username=self.kwargs['ticket_id'])
 
         if not new_user:
             return super().get(request, *args, **kwargs)
