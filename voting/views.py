@@ -38,6 +38,15 @@ class ProposalDetail(LoginRequiredMixin, DetailView):
     model = Proposal
     template_name = 'proposal_detail.html'
 
+    def get_context_data(self, **context):
+        context = super().get_context_data(**context)
+
+        proposals = Proposal.objects.all()
+        context['total'] = proposals.count()
+        context['remaining'] = proposals.exclude(vote__user=self.request.user).count()
+
+        return context
+
 
 class ProposalVote(LoginRequiredMixin, View):
     http_method_names = ['post']
