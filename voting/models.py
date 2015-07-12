@@ -9,8 +9,8 @@ from .utils import generate_user_token
 
 
 class Proposal(models.Model):
-    abstract = models.TextField()
     title = models.TextField()
+    abstract = models.TextField()
     created_at = models.DateTimeField(default=datetime.datetime.now)
 
     def __str__(self):
