@@ -1,0 +1,71 @@
+FIDO: The dog ate my password
+Managing too many Django projects
+Python powered Nukes
+False confidence in cross-validation for machine learning
+Exploring MicroServices for Cloud with Apache Thrift and Python
+Gabbi - Declarative HTTP Testing
+Trade management in Python - a story of throughput
+Asking About Gender; the Whats, Whys and Hows
+Analyzing Python with Pylint
+Deploy flask application single step
+Simplicity Is A Feature
+Choosing a web framework for python 3 and asyncio
+Python 3000, coming late 2008
+All I really want is power
+Finding more bugs with less work
+Localisation
+Templating: Past, Present and Future
+Language Composition with RPython
+Building SAAs with django and polla
+Shipping your application using Conda
+Understanding PyPy
+Using logical flaws to steal and modify business critical data
+Title To Be Determined; A tale of graphs and Markov chains.
+Why I have an unhealthy love of writing tests, and why you shouldn't be scared about writing them
+OOD Rules
+How (not) to argue - a recipe for more productive tech conversations
+Designing, Developing and Deploying resilient data pipelines using Python and Docker-Compose
+Managing mocks: the how, why and when of mocking in Python
+Testing applications for django CMS
+Decentralization: why, how, where to start
+Testing & Async, a journey
+Taming a Legacy Codebase with (Micro)services
+Chromebooks in education: the next five years
+Making code py2/3 compatible using python-future
+Scrapy Workshop
+Template matching- how to
+With flexibility comes responsibilty: Getting schemas around semi-structured data using Avro and Python !!
+The fabric that holds the cloud together: use Python fabric library to manage your OpenStack environment
+Document all the things
+Data Visualisation with Python and Javascript: crafting a data-visualisation toolchain for the web
+Python's Infamous GIL
+A deep dive into python import hooks
+Instrument Your Python App with Metric Collection
+5 impossible things before breakfast
+Intro to web scraping with Scrapy
+The Drogulus, or: How I Learned to Stop Worrying and Love Decentralization.
+Analyse Yourselves
+Building Async Microservices
+Stories of teaching Python to thousands of women
+Leadership of Technical Teams
+Fifty Shades of Disaster - Human Error and Complex Systems.
+Here be Dragons - Writing Safe C Extensions
+Stream Data processing in Python with Apache Spark and Kafka
+Django Security
+Real-Time Data + Django = Fun, Growth + Profit
+Event-Sourced Domain Models in Python
+PyPy for mediocre programmers
+Making Python Computations Fast
+Python for mobile games on iOS and Android
+The good programmer
+Enabling the Optimisation of Python
+Python and PostgreSQL, a Wonderful Wedding
+SHARE YOUR CODE @ PyPI
+Teaching youngsters to code with pgzero on Raspberry Pi
+Getting Pretty Good Privacy with Python
+Python and the terminal: Input, Output, Pipes and Snakes!
+Dispelling py.test magic
+Large scale Data processing with Map-Reduce : The Python Way
+Elephant taming for snake lovers
+Accelerate and scale your tests with nodepool
+JSON and the daughters of Pelias
