@@ -9,4 +9,8 @@ DATABASE_URL=$(heroku config:get DATABASE_URL) python manage.py import_users use
 ```
 
 ## Import Proposals
-TODO
+```
+python manage.py import_talks
+```
+
+This is designed to be run regularly and has been scheduled on Heroku for an hourly run.
