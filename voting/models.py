@@ -16,7 +16,7 @@ class Proposal(models.Model):
     created_at = models.DateTimeField(default=datetime.datetime.now)
 
     def __str__(self):
-        return self.title
+        return self.title.strip()
 
     @property
     def rendered_abstract(self):
