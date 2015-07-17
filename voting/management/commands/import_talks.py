@@ -48,10 +48,12 @@ class Command(BaseCommand):
                 r.raise_for_status()
 
                 # strip the wok metadata and title
-                abstract = '\n'.join(r.text.split('\n')[9:])
+                talk = r.text.split('\n')
+                author = talk[7]
+                abstract = '\n'.join(talk[9:])
 
                 obj, created = Proposal.objects.update_or_create(
                     title=title,
-                    defaults={'abstract': abstract},
+                    defaults={'abstract': abstract, 'author': author},
                 )
                 print('{} Talk: {}'.format('Created' if created else 'Updated', title.strip()))

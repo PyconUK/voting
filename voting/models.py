@@ -10,6 +10,7 @@ from .utils import generate_user_token
 
 
 class Proposal(models.Model):
+    author = models.TextField(null=True, blank=True)
     title = models.TextField()
     abstract = models.TextField()
     created_at = models.DateTimeField(default=datetime.datetime.now)
