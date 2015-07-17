@@ -12,11 +12,14 @@
 
 .vote-buttons {
     margin: 0 auto;
-    width: 250px;
+    width: 310px;
 }
 .vote-buttons form {
     display: inline-block;
 }
 .vote-buttons form:first-child {
     margin-right: 20px;
+}
+.vote-buttons form:last-child {
+    margin-left: 20px;
 }

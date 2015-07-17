@@ -14,13 +14,17 @@
   <form action="{% url 'vote' pk=proposal.pk %}" method="POST">
     {% csrf_token %}
     <input type="hidden" name="vote" value="1" />
-    <input type="submit" class="btn" value="Interested" />
+    <input type="submit" class="btn btn-primary" value="Interested" />
   </form>
 
   <form action="{% url 'vote' pk=proposal.pk %}" method="POST">
     {% csrf_token %}
     <input type="hidden" name="vote" value="0" />
-    <input type="submit" class="btn" value="Not Interested" />
+    <input type="submit" class="btn btn-primary" value="Not Interested" />
+  </form>
+
+  <form action="/" method="GET">
+    <input type="submit" class="btn" value="Skip" />
   </form>
 </div>
 {% endblock %}
