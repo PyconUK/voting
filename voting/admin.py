@@ -7,7 +7,7 @@ from .models import Proposal, User, Vote
 @admin.register(Proposal)
 class ProposalAdmin(admin.ModelAdmin):
     list_display = ['title', 'score']
-    search_fields = ['title', 'abstract']
+    search_fields = ['author', 'title', 'abstract']
 
 
 admin.site.register(User)
