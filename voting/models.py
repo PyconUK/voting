@@ -1,5 +1,6 @@
 import datetime
 
+import markdown
 from django.conf import settings
 from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager,
                                         PermissionsMixin)
@@ -15,6 +16,11 @@ class Proposal(models.Model):
 
     def __str__(self):
         return self.title
+
+    @property
+    def rendered_abstract(self):
+        """Return the HTML rendered version of the markdown abstract"""
+        return markdown.markdown(self.abstract)
 
     @property
     def score(self):

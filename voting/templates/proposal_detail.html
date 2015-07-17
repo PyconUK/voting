@@ -4,7 +4,8 @@
 {% block content %}
 {{ remaining }} proposals remaining of {{ total }}
 <h2>{{ proposal.title }}</h2>
-<p>{{ proposal.abstract }}</p>
+
+{{ proposal.rendered_abstract|safe }}
 
 <div class="vote-buttons">
   <form action="{% url 'vote' pk=proposal.pk %}" method="POST">
