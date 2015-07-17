@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% if vote_list %}
+<h3>Your Reviewed Talks</h3>
+<p>Click on a talk title to change your vote.</p>
+<ul class="list-group">
+  {% for vote in vote_list %}
+  <li class="list-group-item">
+    <a href="{% url 'proposal-detail' pk=vote.proposal.pk %}">{{ vote.proposal.title }}</a>
+    <span class="pull-right">{% if vote.is_interested %}✔{% else %}✘{% endif %}</span>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p><a href="/">You haven't voted on any talks yet, click to get started</a></p>
+{% endif %}
+{% endblock %}

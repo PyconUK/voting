@@ -3,7 +3,10 @@
 {% load markup %}
 
 {% block content %}
-{{ remaining }} proposals remaining of {{ total }}
+<div>
+  <a href="{% url 'reviewed-proposals' %}">Reviewed Proposals</a>
+  <span class="pull-right">{{ remaining }} proposals remaining of {{ total }}</span>
+</div>
 <h2>{{ proposal.title }}</h2>
 
 {{ proposal.author|markup }}

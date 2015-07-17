@@ -76,3 +76,12 @@ class RandomisedProposalList(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return super().get_queryset().exclude(vote__user=self.request.user)
+
+
+class ReviewedProposals(LoginRequiredMixin, ListView):
+    model = Vote
+    ordering = 'created_at'
+    template_name = 'reviewed_proposal_list.html'
+
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)
