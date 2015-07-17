@@ -24,7 +24,13 @@ class Command(BaseCommand):
                     continue
 
                 name = line['Ticket Full Name']
+                if not name:
+                    name = line['Order Name']
+
                 email = line['Ticket Email']
+                if not email:
+                    email = line['Order Email']
+
                 ticket_id = line['Ticket Reference']
 
                 if not (name or email):
