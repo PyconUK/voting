@@ -3,6 +3,10 @@
 
 {% block content %}
 {% if vote_list %}
+<div>
+  <a href="{% url 'unreviewed-proposals' %}">Unreviewed Proposals</a>
+  <span class="pull-right">{{ remaining }} proposals remaining of {{ total }}</span>
+</div>
 <h3>Your Reviewed Talks</h3>
 <p>Click on a talk title to change your vote.</p>
 <ul class="list-group">

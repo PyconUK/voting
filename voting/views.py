@@ -69,10 +69,10 @@ class ProposalVote(LoginRequiredMixin, View):
         return redirect('/')
 
 
-class RandomisedProposalList(LoginRequiredMixin, ListView):
+class UnreviewedProposals(LoginRequiredMixin, ListView):
     model = Proposal
     ordering = '?'
-    template_name = 'proposal_list.html'
+    template_name = 'unreviewed_proposal_list.html'
 
     def get_queryset(self):
         return super().get_queryset().exclude(vote__user=self.request.user)
