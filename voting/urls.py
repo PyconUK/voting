@@ -13,6 +13,7 @@ urlpatterns = [
 
     url(r'^$', Home.as_view(), name='home'),
     url(r'^reviewed/$', ReviewedProposals.as_view(), name='reviewed-proposals'),
+    url(r'^unreviewed/$', UnreviewedProposals.as_view(), name='unreviewed-proposals'),
 
     url(r'^proposals/(?P<pk>\w+)/', include([
         url(r'^$', ProposalDetail.as_view(), name='proposal-detail'),
