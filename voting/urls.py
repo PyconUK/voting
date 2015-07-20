@@ -4,7 +4,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import RedirectView
 
-from .views import Home, Login, ProposalDetail, ProposalVote, ReviewedProposals
+from .views import (Home, Login, ProposalDetail, ProposalVote,
+                    ReviewedProposals, UnreviewedProposals)
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
