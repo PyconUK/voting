@@ -2,7 +2,6 @@ FIDO: The dog ate my password
 Managing too many Django projects
 Python powered Nukes
 False confidence in cross-validation for machine learning
-Exploring MicroServices for Cloud with Apache Thrift and Python
 Gabbi - Declarative HTTP Testing
 Trade management in Python - a story of throughput
 Asking About Gender; the Whats, Whys and Hows
@@ -50,7 +49,6 @@ Stories of teaching Python to thousands of women
 Leadership of Technical Teams
 Fifty Shades of Disaster - Human Error and Complex Systems.
 Here be Dragons - Writing Safe C Extensions
-Stream Data processing in Python with Apache Spark and Kafka
 Django Security
 Real-Time Data + Django = Fun, Growth + Profit
 Event-Sourced Domain Models in Python
@@ -62,10 +60,8 @@ Enabling the Optimisation of Python
 Python and PostgreSQL, a Wonderful Wedding
 SHARE YOUR CODE @ PyPI
 Teaching youngsters to code with pgzero on Raspberry Pi
-Getting Pretty Good Privacy with Python
 Python and the terminal: Input, Output, Pipes and Snakes!
 Dispelling py.test magic
-Large scale Data processing with Map-Reduce : The Python Way
 Elephant taming for snake lovers
 Accelerate and scale your tests with nodepool
 JSON and the daughters of Pelias
