@@ -12,7 +12,6 @@ Choosing a web framework for python 3 and asyncio
 Python 3000, coming late 2008
 All I really want is power
 Finding more bugs with less work
-Localisation
 Templating: Past, Present and Future
 Language Composition with RPython
 Building SAAs with django and polla
@@ -26,7 +25,6 @@ How (not) to argue - a recipe for more productive tech conversations
 Designing, Developing and Deploying resilient data pipelines using Python and Docker-Compose
 Managing mocks: the how, why and when of mocking in Python
 Testing applications for django CMS
-Decentralization: why, how, where to start
 Testing & Async, a journey
 Taming a Legacy Codebase with (Micro)services
 Chromebooks in education: the next five years
