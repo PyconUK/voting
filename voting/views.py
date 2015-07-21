@@ -40,8 +40,15 @@ class ProposalDetail(LoginRequiredMixin, DetailView):
     template_name = 'proposal_detail.html'
 
     def get_context_data(self, **context):
-        context = super().get_context_data(**context)
+        try:
+            vote = Vote.objects.get(user=self.request.user, proposal=self.object)
+        except Vote.DoesNotExist:
+            interested = False
+        else:
+            interested = vote.is_interested
 
+        context = super().get_context_data(**context)
+        context['interested'] = interested
         return context
 
 

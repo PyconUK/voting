@@ -25,5 +25,12 @@
   <form action="/" method="GET">
     <input type="submit" class="btn" value="Skip" />
   </form>
+
+  {% if interested %}
+  <div class="previous-interest">
+    <p>You previously voted:</p>
+    <p><em>{% if interested %}Interested{% else %}Not Interested{% endif %}</em></p>
+  </div>
+  {% endif %}
 </div>
 {% endblock %}

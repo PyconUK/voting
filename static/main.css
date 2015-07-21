@@ -52,6 +52,10 @@ body.unreviewed .navbar-nav>li.unreviewed>a {
 .vote-buttons form:first-child {
     margin-right: 20px;
 }
-.vote-buttons form:last-child {
+.vote-buttons form:nth-child(3) {
     margin-left: 20px;
+}
+.vote-buttons .previous-interest {
+    margin-top: 20px;
+    text-align: center;
 }
