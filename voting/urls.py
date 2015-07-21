@@ -10,7 +10,7 @@ from .views import (Home, Login, ProposalDetail, ProposalVote,
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^favicon.ico$', RedirectView.as_view(url=settings.STATIC_URL + 'favicon.ico')),
+    url(r'^favicon.ico$', RedirectView.as_view(url=settings.STATIC_URL + 'favicon.ico', permanent=True)),
 
     url(r'^$', Home.as_view(), name='home'),
     url(r'^reviewed/$', ReviewedProposals.as_view(), name='reviewed-proposals'),
