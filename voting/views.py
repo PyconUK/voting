@@ -29,6 +29,7 @@ class Login(TemplateView):
         new_user = authenticate(username=self.kwargs['ticket_id'])
 
         if not new_user:
+            print('Failed login with {}'.format(self.kwargs['ticket_id']))
             return super().get(request, *args, **kwargs)
 
         login(self.request, new_user)
