@@ -4,6 +4,7 @@ body {
 }
 header {
     height: 210px;
+    margin-bottom: 20px;
 }
 header h1 {
     float: left;
@@ -14,6 +15,21 @@ header img {
     float: right;
     height: 200px;
 }
+
+.navbar {
+    margin-bottom: 50px;
+}
+nav span {
+    color: #9d9d9d;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+body.reviewed .navbar-nav>li.reviewed>a,
+body.unreviewed .navbar-nav>li.unreviewed>a {
+    color: white;
+}
+
 .form-signin {
     margin: 50px auto 10px;
     max-width: 330px;

@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
 
 
+{% block body_class %}unreviewed{% endblock %}
+
 {% block content %}
-<div>
-  <a href="{% url 'reviewed-proposals' %}">Reviewed Proposals</a>
-  <span class="pull-right">{{ remaining }} proposals remaining of {{ total }}</span>
-</div>
 {% if proposal_list %}
 <ul class="list-group">
   {% for proposal in proposal_list %}

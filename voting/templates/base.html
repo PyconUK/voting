@@ -16,11 +16,22 @@
   <title>PyCon UK Proposal Voting</title>
 </head>
 
-<body>
+<body class="{% block body_class %}{% endblock %}">
   <header>
     <h1>PyCon UK Talk Voting</h1>
     <img src="http://www.pyconuk.org/img/pycon.png" />
   </header>
+
+  <nav class="navbar navbar-inverse">
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="reviewed"><a href="{% url 'reviewed-proposals' %}">Reviewed Proposals</a></li>
+        <li class="unreviewed"><a href="{% url 'unreviewed-proposals' %}">Unreviewed Proposals</a></li>
+      </ul>
+      <span class="pull-right">{{ remaining }} proposals remaining of {{ total }}</span>
+    </div>
+  </nav>
+
   <div class="content">{% block content %}{% endblock content %}</div>
 </body>
 </html>
