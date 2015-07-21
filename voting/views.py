@@ -2,6 +2,7 @@ from braces.views import LoginRequiredMixin
 from django.contrib.auth import authenticate, login
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import DetailView, ListView, TemplateView, View
+from random import shuffle
 
 from .models import Proposal, Vote
 
@@ -13,7 +14,9 @@ class Home(LoginRequiredMixin, TemplateView):
         proposals = Proposal.objects.exclude(vote__user=self.request.user)
         if not proposals:
             return super().get(request, *args, **kwargs)
-        return redirect('proposal-detail', pk=proposals.order_by('?').first().pk)
+        results = list(proposals.objects)
+        results.shuffle()
+        return redirect('proposal-detail', pk=results[0].pk)
 
 
 class Login(TemplateView):
