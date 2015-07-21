@@ -42,10 +42,6 @@ class ProposalDetail(LoginRequiredMixin, DetailView):
     def get_context_data(self, **context):
         context = super().get_context_data(**context)
 
-        proposals = Proposal.objects.all()
-        context['total'] = proposals.count()
-        context['remaining'] = proposals.exclude(vote__user=self.request.user).count()
-
         return context
 
 
@@ -78,29 +74,11 @@ class UnreviewedProposals(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return super().get_queryset().exclude(vote__user=self.request.user)
 
-    def get_context_data(self, **context):
-        context = super().get_context_data(**context)
-
-        proposals = Proposal.objects.all()
-        context['total'] = proposals.count()
-        context['remaining'] = proposals.exclude(vote__user=self.request.user).count()
-
-        return context
-
 
 class ReviewedProposals(LoginRequiredMixin, ListView):
     model = Vote
     ordering = 'created_at'
     template_name = 'reviewed_proposal_list.html'
-
-    def get_context_data(self, **context):
-        context = super().get_context_data(**context)
-
-        proposals = Proposal.objects.all()
-        context['total'] = proposals.count()
-        context['remaining'] = proposals.exclude(vote__user=self.request.user).count()
-
-        return context
 
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user)
