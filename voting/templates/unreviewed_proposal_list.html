@@ -4,6 +4,8 @@
 {% block body_class %}unreviewed{% endblock %}
 
 {% block content %}
+<h3>Your Unreviewed Talks</h3>
+<p>Click on a talk title to see more details and cast your vote.</p>
 {% if proposal_list %}
 <ul class="list-group">
   {% for proposal in proposal_list %}
