@@ -20,12 +20,8 @@ class Command(BaseCommand):
     help = 'Import talk abstracts from the main website repo'
 
     def handle(self, *args, **options):
-        token = os.environ.get('GITHUB_TOKEN')
-        if not token:
-            raise CommandError('GITHUB_TOKEN missing from env')
-
         url = 'https://api.github.com/repos/pyconuk/pyconuk.org/contents/content/talks/'
-        r = requests.get(url, auth=('ghickman', token))
+        r = requests.get(url)
         r.raise_for_status()
         talks = r.json()
 
