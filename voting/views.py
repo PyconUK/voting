@@ -6,14 +6,15 @@ from django.views.generic import DetailView, ListView, TemplateView, View
 from .models import Proposal, Vote
 
 
-class Home(LoginRequiredMixin, TemplateView):
+class Home(LoginRequiredMixin, View):
     template_name = 'home.html'
 
     def get(self, request, *args, **kwargs):
         proposals = Proposal.objects.exclude(vote__user=self.request.user)
-        if not proposals:
-            return super().get(request, *args, **kwargs)
-        return redirect('proposal-detail', pk=proposals.order_by('?').first().pk)
+        if proposals:
+            return redirect('proposal-detail', pk=proposals.order_by('?').first().pk)
+        else:
+            return redirect('reviewed-proposals')
 
 
 class Login(TemplateView):
