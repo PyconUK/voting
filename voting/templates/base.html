@@ -22,6 +22,7 @@
     <img src="http://www.pyconuk.org/img/pycon.png" />
   </header>
 
+  {% if request.user.is_authenticated %}
   <nav class="navbar navbar-inverse navbar-collapse">
     <ul class="nav navbar-nav">
       <li class="reviewed"><a href="{% url 'reviewed-proposals' %}">Reviewed Proposals</a></li>
@@ -31,6 +32,7 @@
         <li><a>{{ remaining }} proposals remaining of {{ total }}</a></li>
     </ul>
   </nav>
+  {% endif %}
 
   <div class="content">{% block content %}{% endblock content %}</div>
 </body>
