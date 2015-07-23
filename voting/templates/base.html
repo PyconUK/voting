@@ -29,7 +29,9 @@
       <li class="unreviewed"><a href="{% url 'unreviewed-proposals' %}">Unreviewed Proposals</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-        <li><a>{{ remaining }} proposals remaining of {{ total }}</a></li>
+        <li><a>Interested: {{num_interested}}</a></li>
+        <li><a>Not interested: {{num_not_interested}}</a></li>
+        <li><a>To go: {{num_remaining}}</a></li>
     </ul>
   </nav>
   {% endif %}

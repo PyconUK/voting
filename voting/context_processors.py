@@ -5,8 +5,12 @@ def proposal_counters(request):
     if not request.user.is_authenticated():
         return {}
 
-    proposals = Proposal.objects.all()
-    total = proposals.count()
-    remaining = proposals.exclude(vote__user=request.user).count()
+    num_proposals = Proposal.objects.count()
 
-    return {'total': total, 'remaining': remaining}
+    counters = {
+        'num_remaining': num_proposals - request.user.num_votes,
+        'num_interested': request.user.num_interested,
+        'num_not_interested': request.user.num_not_interested,
+    }
+
+    return counters
