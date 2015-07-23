@@ -93,3 +93,15 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.email
+
+    @property
+    def num_votes(self):
+        return self.vote_set.count()
+
+    @property
+    def num_interested(self):
+        return self.vote_set.filter(is_interested=True).count()
+
+    @property
+    def num_not_interested(self):
+        return self.vote_set.filter(is_interested=False).count()
