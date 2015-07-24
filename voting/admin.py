@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
-from django.db.models import Count, ExpressionWrapper, F, IntegerField, Sum
+from django.db.models import Count, ExpressionWrapper, F, IntegerField, Sum, Value
+from django.db.models.expressions import Case, When
 from django.db.models.functions import Coalesce
 
 from .models import Proposal, User, Vote
@@ -15,7 +16,10 @@ class ProposalAdmin(admin.ModelAdmin):
         qs = super().get_queryset(request)
         return qs.annotate(
             num_votes=Count('vote'),
-            num_interested=Sum('vote__is_interested')
+            num_interested=Sum(
+                Case(When(vote__is_interested=True, then=Value(1))),
+                output_field=IntegerField(),
+            )
         ).order_by('-num_interested')
 
     def num_votes(self, proposal):
