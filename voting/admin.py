@@ -33,32 +33,35 @@ class ProposalAdmin(admin.ModelAdmin):
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ['email', 'name', 'last_login', 'num_votes', 'num_interested', 'num_not_interested']
+    list_display = ['email', 'name', 'last_login', 'vote_count', 'interested_count', 'not_interested_count']
     search_fields = ['email', 'name']
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
         return qs.annotate(
-            num_votes=Count('vote'),
-            num_interested=Sum(Coalesce('vote__is_interested', 0)),
+            vote_count=Count('vote'),
+            interested_count=Sum(
+                Case(When(vote__is_interested=True, then=Value(1))),
+                output_field=IntegerField(),
+            )
         ).annotate(
-            num_not_interested=ExpressionWrapper(
-                F('num_votes') - F('num_interested'),
+            not_interested_count=ExpressionWrapper(
+                F('vote_count') - F('interested_count'),
                 output_field=IntegerField()
             )
         )
 
-    def num_votes(self, user):
-        return user.num_votes
-    num_votes.short_description = 'Votes'
+    def vote_count(self, user):
+        return user.vote_count
+    vote_count.short_description = 'Votes'
 
-    def num_interested(self, user):
-        return user.num_interested
-    num_interested.short_description = 'Interested'
+    def interested_count(self, user):
+        return user.interested_count
+    interested_count.short_description = 'Interested'
 
-    def num_not_interested(self, user):
-        return user.num_not_interested
-    num_not_interested.short_description = 'Not interested'
+    def not_interested_count(self, user):
+        return user.not_interested_count
+    not_interested_count.short_description = 'Not interested'
 
 
 @admin.register(Vote)
