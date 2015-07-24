@@ -44,12 +44,10 @@ class ProposalDetail(LoginRequiredMixin, DetailView):
         try:
             vote = Vote.objects.get(user=self.request.user, proposal=self.object)
         except Vote.DoesNotExist:
-            interested = False
-        else:
-            interested = vote.is_interested
+            vote = False
 
         context = super().get_context_data(**context)
-        context['interested'] = interested
+        context['vote'] = vote
         return context
 
 
