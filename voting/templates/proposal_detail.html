@@ -26,10 +26,10 @@
     <input type="submit" class="btn" value="Skip" />
   </form>
 
-  {% if interested %}
+  {% if vote %}
   <div class="previous-interest">
     <p>You previously voted:</p>
-    <p><em>{% if interested %}Interested{% else %}Not Interested{% endif %}</em></p>
+    <p><em>{% if vote.interested %}Interested{% else %}Not Interested{% endif %}</em></p>
   </div>
   {% endif %}
 </div>
