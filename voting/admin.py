@@ -2,7 +2,6 @@ from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.db.models import Count, ExpressionWrapper, F, IntegerField, Sum, Value
 from django.db.models.expressions import Case, When
-from django.db.models.functions import Coalesce
 
 from .models import Proposal, User, Vote
 
