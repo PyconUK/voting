@@ -19,24 +19,24 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         if options['proposals']:
-            attrs = ['title', 'num_votes', 'num_interested']
+            attrs = ['title', 'votes_count', 'interested_count']
             qs = Proposal.objects.annotate(
-                num_votes=Count('vote'),
-                num_interested=Sum(
+                votes_count=Count('vote'),
+                interested_count=Sum(
                     Case(
                         When(vote__is_interested=True, then=Value(1)),
                         default=Value(0),
                     ),
                     output_field=IntegerField(),
                 )
-            ).order_by('-num_interested')
+            ).order_by('-interested_count')
         elif options['users']:
-            attrs = ['email', 'last_login', 'num_votes', 'num_interested']
+            attrs = ['email', 'last_login', 'votes_count', 'interested_count']
             qs = User.objects.filter(
                 last_login__isnull=False 
             ).annotate(
-                num_votes=Count('vote'),
-                num_interested=Sum(
+                votes_count=Count('vote'),
+                interested_count=Sum(
                     Case(
                         When(vote__is_interested=True, then=Value(1)),
                         default=Value(0),
